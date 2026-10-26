@@ -1,0 +1,20 @@
+{
+  "name": "readable-docs",
+  "interface": {
+    "displayName": "Readable Docs"
+  },
+  "plugins": [
+    {
+      "name": "readable-docs",
+      "source": {
+        "source": "local",
+        "path": "./plugins/readable-docs"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

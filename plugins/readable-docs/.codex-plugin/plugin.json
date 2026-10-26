@@ -1,0 +1,30 @@
+{
+  "name": "readable-docs",
+  "version": "0.1.0",
+  "description": "Review documents for readability and consistency: terms defined before use, no forward references, no gaps the reader has to fill in.",
+  "author": {
+    "name": "Ildar Sayfutdinov",
+    "url": "https://github.com/isayfutdinov"
+  },
+  "homepage": "https://github.com/isayfutdinov/readable-docs",
+  "repository": "https://github.com/isayfutdinov/readable-docs",
+  "license": "MIT",
+  "keywords": ["documentation", "review", "readability", "technical-writing"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Readable Docs",
+    "shortDescription": "Review docs for readability",
+    "longDescription": "Review a document or a set of documents so that it reads as a coherent story: a structure proposal, role-based reviewer scores, concrete replacement wording and growth areas. The skill reports; it does not edit the document.",
+    "developerName": "Ildar Sayfutdinov",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "defaultPrompt": [
+      "Review this document for readability before I share it.",
+      "Check whether this spec reads in order without guessing."
+    ],
+    "websiteURL": "https://github.com/isayfutdinov/readable-docs",
+    "brandColor": "#2F6F5E",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.svg"
+  }
+}

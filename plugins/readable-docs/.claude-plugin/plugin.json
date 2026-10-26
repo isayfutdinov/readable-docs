@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "readable-docs",
+  "version": "0.1.0",
+  "description": "Review documents for readability and consistency: terms defined before use, no forward references, no gaps the reader has to fill in.",
+  "author": {
+    "name": "Ildar Sayfutdinov",
+    "url": "https://github.com/isayfutdinov"
+  },
+  "homepage": "https://github.com/isayfutdinov/readable-docs",
+  "repository": "https://github.com/isayfutdinov/readable-docs",
+  "license": "MIT",
+  "keywords": ["documentation", "review", "readability", "technical-writing"]
+}

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use or adapt these skills, please credit the author and link to this repository."
+title: "Readable Docs"
+abstract: "Agent skills for documents that read as a coherent story, without guesswork. A plugin marketplace for Claude Code and Codex."
+type: software
+authors:
+  - given-names: Ildar
+    family-names: Sayfutdinov
+    alias: isayfutdinov
+    website: "https://github.com/isayfutdinov"
+repository-code: "https://github.com/isayfutdinov/readable-docs"
+url: "https://github.com/isayfutdinov/readable-docs"
+license: MIT
+keywords:
+  - agent-skills
+  - claude-code
+  - codex
+  - documentation
+  - readability
+  - technical-writing

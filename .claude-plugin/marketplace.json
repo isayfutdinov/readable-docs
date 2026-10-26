@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "readable-docs",
+  "description": "Skills for documents that read as a coherent story, without guesswork.",
+  "owner": {
+    "name": "Ildar Sayfutdinov",
+    "url": "https://github.com/isayfutdinov"
+  },
+  "plugins": [
+    {
+      "name": "readable-docs",
+      "source": "./plugins/readable-docs",
+      "description": "Review documents for readability and consistency: terms defined before use, no forward references, no gaps the reader has to fill in.",
+      "category": "productivity",
+      "keywords": ["documentation", "review", "readability", "technical-writing"]
+    }
+  ]
+}
