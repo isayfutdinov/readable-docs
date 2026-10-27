@@ -1,6 +1,6 @@
 {
   "name": "readable-docs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Review documents for readability and consistency: terms defined before use, no forward references, no gaps the reader has to fill in.",
   "author": {
     "name": "Ildar Sayfutdinov",

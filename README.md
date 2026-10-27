@@ -8,8 +8,8 @@ This repository is a plugin marketplace for both **Claude Code** and **Codex**. 
 
 | Skill | What it does | Status |
 |---|---|---|
-| `polishing-docs-for-reading` | Reviews an existing document, one file or a set of files. Proposes a reading order with a TL;DR, scores the text from the roles that will read it, gives replacement wording for each issue and growth areas for the document as a whole. Reports only; it never edits the document. | In development |
-| `writing-docs-for-reading` | Drafts a document from source material without inventing facts, then reviews the draft with `polishing-docs-for-reading`. | Planned |
+| `review-text` | Reviews an existing document, one file or a set of files. Proposes a reading order with a TL;DR, scores the text from the roles that will read it, gives replacement wording for each issue and growth areas for the document as a whole. Reports only; it never edits the document. | In development |
+| `writing-docs-for-reading` | Drafts a document from source material without inventing facts, then reviews the draft with `review-text`. | Planned |
 
 Reports come in the language the request names, otherwise in the language of the request.
 

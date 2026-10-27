@@ -21,7 +21,7 @@ A plugin marketplace for Claude Code and Codex with one plugin, `readable-docs`.
 
    ```yaml
    ---
-   name: polishing-docs-for-reading
+   name: review-text
    description: Use when …
    license: MIT
    metadata:

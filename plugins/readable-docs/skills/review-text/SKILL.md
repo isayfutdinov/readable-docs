@@ -1,5 +1,5 @@
 ---
-name: polishing-docs-for-reading
+name: review-text
 description: Use when a document — one file or a set of files — must be checked for how it reads before it goes to a team, a client or another agent, or re-checked after fixes, to see whether a reader can follow it in order and act on it without guessing. Triggers include "сделай доку читаемой", "заполишь", "причеши", "ревью по ролям", "подготовь к шарингу", "readability review", "review this doc as PO / dev / QA", any AI-written BRD, architecture note, plan, guide or spec before sharing. Not for code review, writing a document from notes, translation, spelling-only checks, or short messages.
 license: MIT
 metadata:
