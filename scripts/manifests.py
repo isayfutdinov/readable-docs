@@ -83,8 +83,8 @@ def read_frontmatter(path):
     return fields
 
 
-def check_skills(root, plugin_dir, license_id, author, license_text, errors):
-    """Each skill names the plugin's license and author and carries LICENSE.txt, so a copied folder keeps both."""
+def check_skills(root, plugin_dir, errors):
+    """Each skill has SKILL.md whose frontmatter holds exactly `name` and `description`."""
     skills_dir = root / plugin_dir / "skills"
     count = 0
     for skill in sorted(p for p in skills_dir.iterdir() if p.is_dir()) if skills_dir.is_dir() else []:
@@ -104,20 +104,13 @@ def check_skills(root, plugin_dir, license_id, author, license_text, errors):
             errors.append(f"{rel}: name {name!r} must be kebab-case, at most 64 characters")
         if not isinstance(description, str) or not description or len(description) > 1024:
             errors.append(f"{rel}: description must be 1-1024 characters, has {len(description)}")
-        if fields.get("license") != license_id:
-            errors.append(f"{rel}: license {fields.get('license')!r} must be the plugin license {license_id!r}")
-        metadata = fields.get("metadata") if isinstance(fields.get("metadata"), dict) else {}
-        if metadata.get("author") != author:
-            errors.append(f"{rel}: metadata.author {metadata.get('author')!r} must be the plugin author {author!r}")
-        license_copy = skill / "LICENSE.txt"
-        if not license_copy.is_file():
-            errors.append(f"{plugin_dir}/skills/{skill.name}/LICENSE.txt: file is missing, copy LICENSE here")
-        elif license_text is not None and license_copy.read_text() != license_text:
-            errors.append(f"{plugin_dir}/skills/{skill.name}/LICENSE.txt: differs from LICENSE")
+        extra = sorted(set(fields) - {"name", "description"})
+        if extra:
+            errors.append(f"{rel}: frontmatter holds only name and description, also has {', '.join(extra)}")
     return count
 
 
-def check_plugin(root, name, plugin_dir, changelog, license_text, errors):
+def check_plugin(root, name, plugin_dir, changelog, errors):
     if not (root / plugin_dir).is_dir():
         errors.append(f"{plugin_dir}: plugin folder is missing")
         return 0
@@ -157,9 +150,7 @@ def check_plugin(root, name, plugin_dir, changelog, license_text, errors):
     version = next(iter(versions.values()), None)
     if version and not re.search(rf"^## .*\b{re.escape(version)}\b", changelog, re.MULTILINE):
         errors.append(f"CHANGELOG.md: no '## {version}' heading for plugin {name!r}")
-    license_id = next(iter(licenses.values()), None)
-    author = next(iter(authors.values()), None)
-    return check_skills(root, plugin_dir, license_id, author, license_text, errors)
+    return check_skills(root, plugin_dir, errors)
 
 
 def check(root):
@@ -178,8 +169,7 @@ def check(root):
     for name in sorted(codex_paths.keys() - claude_paths.keys()):
         errors.append(f"{CLAUDE_MARKETPLACE}: plugin {name!r} is missing (listed in {CODEX_MARKETPLACE})")
     changelog = (root / "CHANGELOG.md").read_text() if (root / "CHANGELOG.md").is_file() else ""
-    license_text = (root / "LICENSE").read_text() if (root / "LICENSE").is_file() else None
-    if license_text is None:
+    if not (root / "LICENSE").is_file():
         errors.append("LICENSE: file is missing")
     plugins = skills = 0
     for name in sorted(claude_paths.keys() & codex_paths.keys()):
@@ -188,7 +178,7 @@ def check(root):
                           f"{claude_paths[name]!r} vs {codex_paths[name]!r}")
             continue
         plugins += 1
-        skills += check_plugin(root, name, claude_paths[name], changelog, license_text, errors)
+        skills += check_plugin(root, name, claude_paths[name], changelog, errors)
     return errors, plugins, skills
 
 

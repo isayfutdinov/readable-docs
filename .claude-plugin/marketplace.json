@@ -10,9 +10,15 @@
     {
       "name": "readable-docs",
       "source": "./plugins/readable-docs",
-      "description": "Review documents for readability and consistency: terms defined before use, no forward references, no gaps the reader has to fill in.",
+      "description": "Review documents for readability and consistency — terms defined before use, no forward references, no gaps the reader has to fill in — and write texts from the user's materials without inventing a fact.",
       "category": "productivity",
-      "keywords": ["documentation", "review", "readability", "technical-writing"]
+      "keywords": [
+        "documentation",
+        "review",
+        "writing",
+        "readability",
+        "technical-writing"
+      ]
     }
   ]
 }

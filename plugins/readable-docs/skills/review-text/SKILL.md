@@ -1,59 +1,57 @@
 ---
 name: review-text
-description: Use when a document — one file or a set of files — must be checked for how it reads before it goes to a team, a client or another agent, or re-checked after fixes, to see whether a reader can follow it in order and act on it without guessing. Triggers include "сделай доку читаемой", "заполишь", "причеши", "ревью по ролям", "подготовь к шарингу", "readability review", "review this doc as PO / dev / QA", any AI-written BRD, architecture note, plan, guide or spec before sharing. Not for code review, writing a document from notes, translation, spelling-only checks, or short messages.
-license: MIT
-metadata:
-  author: Ildar Sayfutdinov
+description: Use when a document — one file or a set of files — must be checked for how it reads before it goes to a team, a client or another agent, or re-checked after fixes, to see whether a reader can follow it in order and act on it without guessing. Triggers include "make this document readable", "polish this document", "clean up this document", "review from each reader role", "prepare this document for sharing", "readability review", "review this doc as PO / dev / QA", any AI-written BRD, architecture note, plan, guide or spec before sharing. Not for code review, writing a document from notes, translation, spelling-only checks, or short messages.
 ---
 
 # Reviewing documents for sequential reading
 
 ## Overview
 
-A human reads in order, and reads once. A document fails the moment the reader must guess; so does the report. Edits happen outside the report, and the next run is the next round.
+One round of form review of a document, from the roles of its readers, gives a report with findings, ready replacement text, the findings that block a reader marked, and a 0–10 score per role; the document itself is never changed.
 
 ## Hard constraints
 
-- Never create, edit or delete the document or any file in its folder; read only the inputs the request names and this skill's files. The only deliverable is the report.
+- Never create, edit or delete the document or any of its files; read only the inputs the request names and this skill's files. The only deliverable is the report, written where the request says (the document's folder included), otherwise as the reply.
 - Write the report in the language the request names, otherwise in the request's language. Document terms stay as written; text to paste into the document is in its language.
-- The report holds no text on how to read it, no template comment and no phrase of this skill ("without guessing").
-- A finding is a proposal, never a verdict or a judgement of the author, on one line: what is wrong, the replacement, the rule id, other places with the same defect.
-- Replacement text adds no fact the document lacks: no number, date, cause or frequency, and no actor, step, order, destination, permission, state change, alternate flow or failure path. A missing fact is the defect ("does not say who grants access"), marked ‹…› in the replacement, never a question. A hedge stays a hedge.
-- A replacement keeps every condition, number, qualifier and actor of the text it replaces; one wording for several places keeps each place's conditions.
-- Review the form, not whether business decisions are right. A contradiction names both places; which version is right is the author's call.
-- The TL;DR is 2–3 lines in the document's own words, ready to paste at its top; a review summary is not one.
-- Every confirmed role has its own 0–10 score; a severity scale never replaces it.
-- "No issues found" is not a pass; say what was checked.
+- The report holds no text on how to read it and no phrase of this skill ("without guessing").
+- A finding is a proposal, never a verdict or a judgement of the author, written as the lines of `assets/review-report-template.md`.
+- Every replacement obeys 3a–3c of `references/readability-rules.md`.
+- Review the form, not whether business decisions are right.
+- Every role run has its own 0–10 score.
+- Findings have no quota. Report a finding as `references/readability-rules.md` defines it, not a change merely to fill the report; no optional improvement is required.
+
+## Priorities when rules compete
+
+Preserve the document's content, conditions, qualifications, attribution and author's position. Make the intended meaning explicit and follow the reader's task; then shorten and polish. Brevity or style never justifies losing meaning or leaving the reader to guess. Where the document does not establish the intended meaning, name the gap and use a placeholder instead of choosing a reading. This is an order for editorial choices, not a fact check.
 
 ## One round
 
-Write the report from a copy of `assets/review-report-template.md`, comments deleted, where the request says or as the reply.
+Write the report from a copy of `assets/review-report-template.md`.
 
-**0. Intake.** Read every file in reading order (a README, numbered prefixes, or the user's order) before any score. Pick the smallest reviewer set that covers the named readers (`references/reviewer-personas.md`), list other candidates as optional with one line why, and ask the user to confirm; if no answer can reach this run, proceed with the minimal set marked unconfirmed.
+**0. Intake.** Read every file in reading order (a README, numbered prefixes, or the user's order) before the document pass. Set the document's purpose and readers: who reads it and what they must be able to decide or do after reading, from the request, otherwise from the document. Pick the reviewer set (`references/reviewer-personas.md`). Ask the user to confirm it only when the request names no readers, the answer would change the set, and an answer can reach this run; otherwise run the set, and About says why it was not asked or not confirmed.
 
-**1. Document review.** Make the document pass of `references/readability-rules.md` with what the user asked in mind: purpose and readers, whether the document answers their question, order of parts and the TL;DR, section purposes (7a, even if no reviewer raises it), terms used in more than one sense. With a previous version, compare their facts. The reviewer passes (section, sentence, inventory) are the reviewers'.
+**1. Document review.** Make the document pass of `references/readability-rules.md`.
 
-**2. Reviewers.** Run one reviewer per confirmed role, with its rule blocks, and the typo reviewer, as the personas file says, on a cheaper model than yours with a medium reasoning budget; the typo reviewer on the cheapest available with a small budget.
+**2. Reviewers.** Run one reviewer per role in the set, with its rule blocks, and the typo reviewer, as `references/reviewer-personas.md` says.
 
-**3. Consolidate.** Merge reviewer findings with your own. A pasted replacement becomes the document, so check each against the text it replaces for a lost qualifier (only, automatically, if, after, internal), a causal link the document does not state (so, because, a colon joining two facts), a date or number beyond its scope and an actor the document does not name, even a generic one (the platform). Restore losses, turn additions into placeholders, and never claim nothing was invented without this check.
+**3. Consolidate.** Merge reviewer findings with your own; a defect stated by several reviewers or at several places is one finding. Check each mark against the definition of a blocking finding (`references/readability-rules.md`). Check each replacement against the text it replaces by 3a–3c and 10a: restore losses and turn additions into placeholders. The report's length comes from the document's defects, never from the report's own words: one line per defect, as the template gives it. No finding is dropped for length.
 
-Keep proportion: every sentence that is not a finding hides the ones that matter. Volume comes from the document's defects, never from the report's own words: one line per defect, duplicates merged, "also at" short. The Summary holds scores and a verdict, never a finding. No finding is dropped for length.
-
-**4. Rounds.** With a previous report, count the round and move each unfixed repeat, a partial fix included, to "Still open". Threshold: every role ≥ 9.0 in two consecutive rounds (≥ 9.6 after a human pass); after round 5 without it, the Summary recommends stopping. The skill never declares the document done; the user decides.
+**4. Rounds.** A round is one `review` run on the current version of the document. With a previous report it is the next round: number it from that report and move each unfixed repeat, a partial fix included, to "Still open". In rounds 1 and 2 the report recommends a next round only when the round has a blocking finding, to be run after it is fixed; wording findings never call for one. In round 3 and later it recommends stopping, even when blocking findings remain, and lists them as remaining. The skill never declares the document done; the user decides.
 
 ## Modes
 
 - `review` (default): one round as above.
-- `human-pass`: the request brings the user's remarks. No reviewer round (without a previous report, run `review` first): copy the previous report, answer each remark under "Answers to remarks" and keep the round number; later rounds use 9.6. Rules never change between runs.
-- `second-opinion`: run the reviewer round on the model the request names and write a separate report titled "second opinion — <model>"; the user copies what they approve into the main report.
+- `human-pass`: the request brings the user's remarks on a previous report (without one, run `review` first). No reviewer round: copy the previous report, keep its round number, and answer each remark under "Answers to remarks". A remark changes the answers in this report, never the rules or the score scale of later rounds.
+- `second-opinion`: the request names a model. Run step 2 on that model, then step 3 with the document pass of the main report of the same round (without one, run `review` first). Write a separate report with that round's number and the second-opinion title of the template; the user copies what they approve into the main report.
 
-## Red flags: stop and re-read Hard constraints
+## Red flags
 
-- "Unclear" or "rewrite this" with no replacement text.
-- A smoother or shorter replacement not checked condition by condition against each original.
-- A replacement adds who acts, when, why or in which order.
-- A replacement keeps the defect its finding names, or picks one side of a contradiction.
-- A question to the author, or a guess inside a placeholder.
-- Report text in the document's language only because the document is in it.
-- A template comment, or its content in your own words, left in the report.
-- A sentence the author does not need, or a finding dropped to make the report shorter.
+| If you think | Do instead |
+|---|---|
+| "The likely reading is obvious; I'll use it." | A guess is a finding; without a reading the document establishes, the replacement carries both (8b). |
+| "The author surely means this actor, reason or order." | Name the missing fact as the defect, with a placeholder (3c). |
+| "I'll ask the author." | A missing fact is a finding with a placeholder, never a question (3c). |
+| "The shorter replacement says the same." | Check it condition by condition against each original (3a, 10a). |
+| "Unclear; this needs a rewrite." | Give the replacement text, or the placeholder for what is missing. |
+| "The document is in another language, so the report is too." | The report is in the request's language (Hard constraints). |
+| "The report is long; minor findings can go." | No finding is dropped for length (step 3). |

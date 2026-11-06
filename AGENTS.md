@@ -23,15 +23,12 @@ A plugin marketplace for Claude Code and Codex with one plugin, `readable-docs`.
    ---
    name: review-text
    description: Use when …
-   license: MIT
-   metadata:
-     author: Ildar Sayfutdinov
    ---
    ```
 
-   `name` is kebab-case, at most 64 characters. `description` has at most 1024 characters, is written in the third person, starts with "Use when…" and lists trigger conditions, not the process. `license` and `metadata.author` match the plugin manifests. Copy `LICENSE` into the skill folder as `LICENSE.txt`: people often copy one skill folder, and the license and the author must travel with it. Supporting files go to `references/` and `assets/` next to `SKILL.md` and are linked by relative path. Codex app metadata for a skill, if needed, goes to `agents/openai.yaml`.
+   `name` is kebab-case, at most 64 characters. `description` has at most 1024 characters, is written in the third person, starts with "Use when…" and lists trigger conditions, not the process. The license and the author live in the root `LICENSE`, `CITATION.cff` and the plugin manifests, not in the skill folder. Supporting files go to `references/` and `assets/` next to `SKILL.md` and are linked by relative path. Codex app metadata for a skill, if needed, goes to `agents/openai.yaml`.
 5. **Platform-neutral text.** A skill must run unchanged in Claude Code and Codex. Do not name one platform's tools (Task tool, Agent tool, `subagent_type`, slash commands); describe the action instead, for example "an independent reviewer with a clean context". Write skill files in English; the skill itself answers in the language the request names, otherwise in the language of the request.
 6. **Releases only.** The public repository receives one commit per release, published from a private development repository. An installed half-written skill fires on real requests, so publish a skill only when it is finished.
 7. **No internal material.** No test corpora, eval runs, company documents, internal links or personal data. Evals live in the private development repository.
-8. **Validate before committing.** Run `scripts/validate.sh`; after a change to any manifest also run `scripts/validate.sh --smoke`.
-9. **License and credit.** The repository is MIT, copyright Ildar Sayfutdinov. Do not change the license or the copyright line. Keep the author in `CITATION.cff`, in both plugin manifests and in every skill's frontmatter.
+8. **Validate before committing.** Run `scripts/validate.sh`; after a change to any manifest also run `CODEX_BIN=<path to codex> scripts/validate.sh --smoke`, so the plugin is installed in both Claude Code and Codex. Without `CODEX_BIN` the smoke test covers Claude Code only.
+9. **License and credit.** The repository is MIT, copyright Ildar Sayfutdinov. Do not change the license or the copyright line. Keep the author in `CITATION.cff` and in both plugin manifests.

@@ -6,18 +6,16 @@ This repository is a plugin marketplace for both **Claude Code** and **Codex**. 
 
 ## Skills
 
-| Skill | What it does | Status |
+| Skill | What it does | Since |
 |---|---|---|
-| `review-text` | Reviews an existing document, one file or a set of files. Proposes a reading order with a TL;DR, scores the text from the roles that will read it, gives replacement wording for each issue and growth areas for the document as a whole. Reports only; it never edits the document. | In development |
-| `writing-docs-for-reading` | Drafts a document from source material without inventing facts, then reviews the draft with `review-text`. | Planned |
+| `review-text` | Reviews an existing document, one file or a set of files, from the roles of its readers. Proposes a reading order with a TL;DR when the opening lacks the main point, marks each finding blocking or wording, gives replacement wording for each issue, a score per role and growth areas for the document as a whole. Reports only; it never edits the document. | 0.1.0 |
+| `write-text` | Writes a text with a reader — a decision paper, spec, plan, runbook, task description, handover, article, post, cover letter, client notice — from the materials the user gives and the user's answers, and nothing else. Gaps become questions to the user or open questions in the text; every statement is traced to its source; an independent source check and reader check run before handover; a form review by `review-text` runs on request. Companion files next to the text: `sources-map.md` and `cycle-report.md`. Mode `revise` applies remarks to an existing text under the same rules. | 0.3.0 |
 
-Reports come in the language the request names, otherwise in the language of the request.
+Reports and texts come in the language the request names, otherwise in the language of the request.
 
 ## Install
 
-The repository is private for now. Installation uses your git credentials (`gh auth login` or an SSH key) and needs read access to `isayfutdinov/readable-docs`.
-
-If your default GitHub credentials belong to another account, add the marketplace by an SSH URL that uses a host alias for the right key, for example `git@github-personal:isayfutdinov/readable-docs.git`, in place of `isayfutdinov/readable-docs` in the commands below.
+If your default GitHub credentials belong to another account, add the marketplace by an SSH URL that uses a host alias for the right key, for example `git@<alias>:isayfutdinov/readable-docs.git`, in place of `isayfutdinov/readable-docs` in the commands below.
 
 ### Claude Code
 
@@ -78,7 +76,6 @@ plugins/readable-docs/
   .codex-plugin/plugin.json                plugin manifest for Codex, with the app interface
   assets/icon.svg                          icon in the Codex app
   skills/<skill-name>/SKILL.md             one folder per skill, shared by both platforms
-  skills/<skill-name>/LICENSE.txt          copy of LICENSE, travels with the skill folder
 LICENSE                                    MIT
 CITATION.cff                               how to credit the author ("Cite this repository" on GitHub)
 scripts/manifests.py                       check: manifests in step; bump: set the plugin version
@@ -89,8 +86,8 @@ scripts/validate.sh                        local and CI validation
 
 Skills are written and evaluated in a separate private repository, because the test corpus contains internal documents. This repository receives one commit per release, with only the files users need. Rules for agents are in [AGENTS.md](AGENTS.md).
 
-`scripts/validate.sh` checks the marketplace; `--smoke` also installs the plugin from a checkout into throwaway Claude Code and Codex homes. Set `CODEX_BIN` if `codex` is not on your `PATH`. CI runs `scripts/validate.sh --smoke` on every push to `main` and on every pull request.
+`scripts/validate.sh` checks the marketplace; `--smoke` also installs the plugin from a checkout into a throwaway Claude Code home, and into a throwaway Codex home when `CODEX_BIN` names the `codex` binary. CI runs `scripts/validate.sh --smoke` on every push to `main` and on every pull request.
 
 ## License
 
-[MIT](LICENSE) © 2026 Ildar Sayfutdinov. You may use, change and share these skills, commercially too. Keep the license and the author's name in every copy, including a single copied skill folder. To credit the work, use **Cite this repository** on GitHub or link to https://github.com/isayfutdinov/readable-docs.
+[MIT](LICENSE) © 2026 Ildar Sayfutdinov. You may use, change and share these skills, commercially too. Keep the license and the author's name in every copy. To credit the work, use **Cite this repository** on GitHub or link to https://github.com/isayfutdinov/readable-docs.

@@ -1,7 +1,7 @@
 {
   "name": "readable-docs",
-  "version": "0.2.0",
-  "description": "Review documents for readability and consistency: terms defined before use, no forward references, no gaps the reader has to fill in.",
+  "version": "0.3.0",
+  "description": "Review documents for readability and consistency — terms defined before use, no forward references, no gaps the reader has to fill in — and write texts from the user's materials without inventing a fact.",
   "author": {
     "name": "Ildar Sayfutdinov",
     "url": "https://github.com/isayfutdinov"
@@ -9,18 +9,29 @@
   "homepage": "https://github.com/isayfutdinov/readable-docs",
   "repository": "https://github.com/isayfutdinov/readable-docs",
   "license": "MIT",
-  "keywords": ["documentation", "review", "readability", "technical-writing"],
+  "keywords": [
+    "documentation",
+    "review",
+    "writing",
+    "readability",
+    "technical-writing"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Readable Docs",
-    "shortDescription": "Review docs for readability",
-    "longDescription": "Review a document or a set of documents so that it reads as a coherent story: a structure proposal, role-based reviewer scores, concrete replacement wording and growth areas. The skill reports; it does not edit the document.",
+    "shortDescription": "Review and write readable docs",
+    "longDescription": "Review a document or a set of documents so that it reads as a coherent story: a structure proposal, role-based reviewer scores, concrete replacement wording and growth areas; the review reports and never edits the document. Write a text from the materials and answers the user gives, and nothing else: gaps become questions or open questions, every statement is traced to its source, and independent checks run before handover.",
     "developerName": "Ildar Sayfutdinov",
     "category": "Productivity",
-    "capabilities": ["Interactive", "Read", "Write"],
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
     "defaultPrompt": [
       "Review this document for readability before I share it.",
-      "Check whether this spec reads in order without guessing."
+      "Check whether this spec reads in order without guessing.",
+      "Write a spec from these notes without inventing anything."
     ],
     "websiteURL": "https://github.com/isayfutdinov/readable-docs",
     "brandColor": "#2F6F5E",
