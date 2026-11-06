@@ -116,6 +116,12 @@ def check_plugin(root, name, plugin_dir, changelog, errors):
         return 0
     if Path(plugin_dir).name != name:
         errors.append(f"{plugin_dir}: folder name differs from plugin name {name!r}")
+    # The installed plugin folder travels alone, so it carries its own copy of the license.
+    plugin_license = root / plugin_dir / "LICENSE"
+    if not plugin_license.is_file():
+        errors.append(f"{plugin_dir}/LICENSE: file is missing")
+    elif (root / "LICENSE").is_file() and plugin_license.read_bytes() != (root / "LICENSE").read_bytes():
+        errors.append(f"{plugin_dir}/LICENSE: differs from the root LICENSE")
     versions, licenses, authors = {}, {}, {}
     for manifest in (CLAUDE_MANIFEST, CODEX_MANIFEST):
         rel = f"{plugin_dir}/{manifest}"

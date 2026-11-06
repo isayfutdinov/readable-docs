@@ -15,8 +15,6 @@ Reports and texts come in the language the request names, otherwise in the langu
 
 ## Install
 
-If your default GitHub credentials belong to another account, add the marketplace by an SSH URL that uses a host alias for the right key, for example `git@<alias>:isayfutdinov/readable-docs.git`, in place of `isayfutdinov/readable-docs` in the commands below.
-
 ### Claude Code
 
 In a session:
@@ -75,6 +73,7 @@ plugins/readable-docs/
   .claude-plugin/plugin.json               plugin manifest for Claude Code
   .codex-plugin/plugin.json                plugin manifest for Codex, with the app interface
   assets/icon.svg                          icon in the Codex app
+  LICENSE                                  copy of the root LICENSE, shipped with the installed plugin
   skills/<skill-name>/SKILL.md             one folder per skill, shared by both platforms
 LICENSE                                    MIT
 CITATION.cff                               how to credit the author ("Cite this repository" on GitHub)

@@ -2,6 +2,11 @@
 
 Versions of the `readable-docs` plugin. The same version is set in `plugins/readable-docs/.claude-plugin/plugin.json` and `plugins/readable-docs/.codex-plugin/plugin.json`.
 
+## 0.3.1
+
+- The installed plugin folder `plugins/readable-docs/` now carries the full MIT license text (`LICENSE`, identical to the root one); `scripts/manifests.py` checks that the copy is there and matches.
+- README: the install section starts with the commands; the note on GitHub accounts and SSH host aliases is removed.
+
 ## 0.3.0
 
 - New skill `write-text`: writes a text with a reader — a decision paper, spec, plan, runbook, task description, handover, article, post, cover letter, client notice — from the materials the user gives and the user's answers, and nothing else. Gaps go to the user in one batch of questions, or stay in the text as open questions with who decides them; the text is planned from the reader's way to the result; every statement gets a line in a sources map; an independent source check and reader check run until no blocking problem remains; a form review by `review-text` runs only on request. Companion files next to the text: `sources-map.md` and `cycle-report.md` (`plan.md` on request). Mode `revise` applies remarks to an existing text under the same rules.
