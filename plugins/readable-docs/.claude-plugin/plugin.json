@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "readable-docs",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Review documents for readability and consistency — terms defined before use, no forward references, no gaps the reader has to fill in — and write texts from the user's materials without inventing a fact.",
   "author": {
     "name": "Ildar Sayfutdinov",

@@ -2,6 +2,10 @@
 
 Versions of the `readable-docs` plugin. The same version is set in `plugins/readable-docs/.claude-plugin/plugin.json` and `plugins/readable-docs/.codex-plugin/plugin.json`.
 
+## 0.3.2
+
+- README: the skills table is replaced by a short description of each skill; the version a skill first shipped in stays in this changelog.
+
 ## 0.3.1
 
 - The installed plugin folder `plugins/readable-docs/` now carries the full MIT license text (`LICENSE`, identical to the root one); `scripts/manifests.py` checks that the copy is there and matches.

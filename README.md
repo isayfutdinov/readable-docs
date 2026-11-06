@@ -6,10 +6,9 @@ This repository is a plugin marketplace for both **Claude Code** and **Codex**. 
 
 ## Skills
 
-| Skill | What it does | Since |
-|---|---|---|
-| `review-text` | Reviews an existing document, one file or a set of files, from the roles of its readers. Proposes a reading order with a TL;DR when the opening lacks the main point, marks each finding blocking or wording, gives replacement wording for each issue, a score per role and growth areas for the document as a whole. Reports only; it never edits the document. | 0.1.0 |
-| `write-text` | Writes a text with a reader — a decision paper, spec, plan, runbook, task description, handover, article, post, cover letter, client notice — from the materials the user gives and the user's answers, and nothing else. Gaps become questions to the user or open questions in the text; every statement is traced to its source; an independent source check and reader check run before handover; a form review by `review-text` runs on request. Companion files next to the text: `sources-map.md` and `cycle-report.md`. Mode `revise` applies remarks to an existing text under the same rules. | 0.3.0 |
+**`write-text`** — writes a text with a reader (a decision paper, spec, runbook, handover, article, post, letter) from your materials and answers only; what is missing becomes a question to you, not a guess.
+
+**`review-text`** — reviews an existing document from the roles of its readers and returns findings with replacement wording; it never edits the document.
 
 Reports and texts come in the language the request names, otherwise in the language of the request.
 
